@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>neuron-bsp-i2c-example</name>
+  <version>0.1.0</version>
+  <description>The neuron bsp i2c example</description>
+
+  <maintainer email="chester.tseng@adlinktech.com">YuSheng Tseng</maintainer>
+  <license>Apache 2.0</license>
+  <url type="website">https://www.adlinktech.com/en/ROS2-Solution.aspx</url>
+  <author email="chester.tseng@adlinktech.com">YuSheng Tseng</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+</package>
