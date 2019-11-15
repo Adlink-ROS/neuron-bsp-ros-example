@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include <vector>
+#include <thread>
 
 #include <neuron/platform/types.hpp>
 #include <neuron/gpio/gpio.hpp>
@@ -23,34 +24,23 @@ int main(int /*argc*/, char* /*argv*/[])
 {
   nbsp_ret_t ret = enRet::SUCCESS;
   nbsp_gpio_dir_t dir;
-  nbsp_gpio_resistance_t resist;
   nbsp_gpio_value_t value;
+  
+  // Replace 0 with your target pin.
   gpio::GPIO pin(0);
 
-  ret = pin.selectStragetry(enDrvType::SEMA);
+  ret = pin.setStragety(enDrvType::NATIVE);
 
   if (ret != enRet::SUCCESS) {
     return 1;
   }
-
-  ret = pin.setResistance(gpio::enResistance::PULL_DOWN);
-
+  
+  ret = pin.init();
   if (ret != enRet::SUCCESS) {
     return 1;
   }
-
-  ret = pin.getResistance(&resist);
-
-  if (ret != enRet::SUCCESS) {
-  }
-
 
   ret = pin.setDir(gpio::enDIR::OUTPUT);
-  if (ret != enRet::SUCCESS) {
-    return 1;
-  }
-
-  ret = pin.getDir(&dir);
   if (ret != enRet::SUCCESS) {
     return 1;
   }
@@ -60,18 +50,9 @@ int main(int /*argc*/, char* /*argv*/[])
   if (ret != enRet::SUCCESS) {
     return 1;
   }
-
-  ret = pin.setDir(gpio::enDIR::INPUT);
-
-  if (ret != enRet::SUCCESS) {
-    return 1;
-  }
-
-  ret = pin.getValue(&value);
-
-  if (ret != enRet::SUCCESS) {
-    return 1;
-  }
+  
+  // end
+  pin.deinit();
 
   return 0;
 }
